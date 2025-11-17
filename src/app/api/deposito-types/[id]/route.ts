@@ -36,25 +36,11 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
-    const depositoTypeId = parseInt(id, 10);
-
-    if (isNaN(depositoTypeId)) {
-      return NextResponse.json(
-        { status: 400, message: "Invalid deposito type ID" },
-        { status: 400 }
-      );
-    }
-
     const body = await request.json();
     const validated = updateDepositoTypeSchema.parse(body);
 
-    const updateData: { name?: string; yearlyReturn?: string } = {};
-    if (validated.name !== undefined) updateData.name = validated.name;
-    if (validated.yearlyReturn !== undefined)
-      updateData.yearlyReturn = validated.yearlyReturn.toString();
-
-    const depositoType = await updateDepositoType(id, updateData);
-    return NextResponse.json(depositoType);
+    const deposito = await updateDepositoType(id, validated);
+    return NextResponse.json(deposito);
   } catch (error: unknown) {
     if (error && typeof error === "object" && "status" in error) {
       const apiError = error as { status: number; message: string };
@@ -84,15 +70,6 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const depositoTypeId = parseInt(id, 10);
-
-    if (isNaN(depositoTypeId)) {
-      return NextResponse.json(
-        { status: 400, message: "Invalid deposito type ID" },
-        { status: 400 }
-      );
-    }
-
     await deleteDepositoType(id);
     return NextResponse.json({ message: "Deposito type deleted successfully" });
   } catch (error: unknown) {
