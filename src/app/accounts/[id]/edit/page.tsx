@@ -1,0 +1,11 @@
+import AccountForm from "@/features/accounts/pages/form/account-form";
+
+export default async function EditAccountPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <AccountForm accountId={id} />;
+}
+

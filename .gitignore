@@ -1,0 +1,17 @@
+# This file is used to specify files and directories that should be ignored by Git.
+
+# Prevent next.js build artifacts and dependencies from being tracked
+# Ignore build output directory
+.next
+
+# Ignore node modules directory
+node_modules
+
+# Ignore environment variable files
+.env
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lock
