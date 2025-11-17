@@ -1,4 +1,4 @@
-# Belimbing.ai Bank Saving System
+# Bank Saving System
 
 A complete Next.js fullstack banking application implementing a Bank Saving System using MVC principles, with **Supabase Postgres** as the database and **Drizzle ORM**.
 
@@ -17,15 +17,18 @@ A complete Next.js fullstack banking application implementing a Bank Saving Syst
 ### Banking System Management
 
 - **Customers** (CRUD)
+
   - Create, read, update, and delete customers
   - Search customers by name
 
 - **Accounts** (CRUD)
+
   - Create accounts for customers
   - Link accounts to deposito types
   - View account balances and details
 
 - **Deposito Types** (CRUD)
+
   - Manage deposito types (Bronze, Silver, Gold)
   - Configure yearly return rates
   - Unique name validation
@@ -39,6 +42,7 @@ A complete Next.js fullstack banking application implementing a Bank Saving Syst
 ### Interest Calculation
 
 The system calculates interest based on:
+
 - Starting balance
 - Months from account creation to withdrawal date
 - Yearly return rate from deposito type
@@ -50,7 +54,7 @@ The system calculates interest based on:
 
 ```bash
 git clone <repository-url>
-cd banking-saving-system
+cd bank-saving-system
 ```
 
 2. Install dependencies:
@@ -110,6 +114,7 @@ pnpm db:seed
 ```
 
 This will create:
+
 - 3 deposito types (Bronze: 3%, Silver: 5%, Gold: 7%)
 - 1 sample customer (John Miller)
 - 1 sample account (Gold type, 1,000,000 balance)
@@ -138,15 +143,18 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ### Tables
 
 - **customers**: Customer information
+
   - `id` (serial, primary key)
   - `name` (text, not null)
 
 - **deposito_types**: Types of deposito accounts
+
   - `id` (serial, primary key)
   - `name` (text, unique, not null)
   - `yearly_return` (numeric, precision 12, scale 6)
 
 - **accounts**: Customer accounts
+
   - `id` (serial, primary key)
   - `packet` (text, not null)
   - `balance` (numeric, precision 18, scale 2, default 0)
@@ -211,11 +219,12 @@ function calculateEndingBalance(
 ```
 
 **Example:**
+
 - Starting balance: 1,000,000 IDR
 - Yearly return: 7% (0.07)
 - Months: 12
 - Monthly return: 0.07 / 12 = 0.00583
-- Ending balance: 1,000,000 * (1 + 0.00583 * 12) = 1,070,000 IDR
+- Ending balance: 1,000,000 _ (1 + 0.00583 _ 12) = 1,070,000 IDR
 
 ## ☁️ Deployment
 
