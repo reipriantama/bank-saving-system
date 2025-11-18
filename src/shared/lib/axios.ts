@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { getAccessToken } from "@/features/auth/api/auth";
 
 const apiClient = axios.create({
   baseURL:
@@ -11,19 +10,6 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-apiClient.interceptors.request.use(
-  (config) => {
-    const token = getAccessToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {

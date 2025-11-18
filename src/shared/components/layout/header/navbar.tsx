@@ -4,18 +4,16 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Input } from "@/shared/components/ui/input";
 import { Star } from "lucide-react";
-import { useUser } from "@/shared/hooks/use-user";
 import { UserDropdown } from "@/shared/components/layout/dashboard/user-dropdown";
 import useSearchStore from "@/shared/stores/search";
 import { useDebounce } from "@/shared/hooks/use-debounce";
 
 export function Navbar() {
-  const user = useUser();
   const pathname = usePathname();
   const searchValue = useSearchStore((state) => state.searchValue);
   const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const [localSearchValue, setLocalSearchValue] = useState(searchValue);
-  
+
   // Debounce search value
   const debouncedSearchValue = useDebounce(localSearchValue, 500);
 
@@ -50,7 +48,7 @@ export function Navbar() {
   // Don't show navbar on auth pages and dashboard pages
   const isAuthPage = pathname?.startsWith("/auth");
   const isDashboardPage = pathname?.startsWith("/dashboard");
-  
+
   if (isAuthPage || isDashboardPage) {
     return null;
   }
@@ -74,9 +72,7 @@ export function Navbar() {
 
         {/* User Section - Right */}
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-700">
-            {user?.fullName || "User"}
-          </span>
+          <span className="text-sm font-medium text-gray-700"></span>
           <div className="relative">
             <UserDropdown />
             {/* Online Status Indicator */}

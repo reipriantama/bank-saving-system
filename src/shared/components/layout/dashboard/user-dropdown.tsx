@@ -10,10 +10,8 @@ import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useUserStore from "@/shared/stores/users";
 import { useSonner } from "@/shared/hooks/use-sonner";
-import { useUser } from "@/shared/hooks/use-user";
 
 export function UserDropdown() {
-  const user = useUser();
   const router = useRouter();
   const { sonner } = useSonner();
   const clearUser = useUserStore((state) => state.clearUser);
@@ -48,9 +46,7 @@ export function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-2 rounded-full hover:bg-gray-100 p-1 transition-colors focus:outline-none">
           <div className="relative h-8 w-8 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-            <span className="text-white text-xs font-semibold">
-              {user?.fullName?.charAt(0).toUpperCase() || "U"}
-            </span>
+            <span className="text-white text-xs font-semibold"></span>
           </div>
         </button>
       </DropdownMenuTrigger>
@@ -63,4 +59,3 @@ export function UserDropdown() {
     </DropdownMenu>
   );
 }
-
